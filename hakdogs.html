@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertically Scrollable Media</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h2 {
+            margin: 20px;
+            text-align: center;
+            color: #444;
+        }
+
+        .scrollable-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .media-container {
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            gap: 20px;
+            padding: 15px;
+            max-height: 80vh; /* Limit vertical scroll area */
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .media-container img {
+            width: 100%; /* Take full width of the container */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px;
+            object-fit: cover;
+            border: 5px solid #ddd; /* Frame for the images */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .media-container img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            border-color: #aaa; /* Highlight frame on hover */
+        }
+
+        .media-container::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .media-container::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 5px;
+        }
+
+        .media-container::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+        }
+
+        .arrow-btn {
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .arrow-btn:hover {
+            background-color: #666;
+        }
+
+        .arrow-up {
+            position: absolute;
+            top: 0;
+            z-index: 10;
+        }
+
+        .arrow-down {
+            position: absolute;
+            bottom: 0;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Field Study 2</h2>
+<div class="scrollable-container">
+    <div class="media-container" id="mediaContainer">
+        <a href="images/1747370319046.jpg" target="_blank">
+            <img src="images/1747370319046.jpg" alt="Image 109">
+        </a>
+        <a href="images/1747370319037.jpg" target="_blank">
+            <img src="images/1747370319037.jpg" alt="Image 108">
+        </a>
+        <a href="images/1747370319027.jpg" target="_blank">
+            <img src="images/1747370319027.jpg" alt="Image 107">
+        </a>
+        <a href="images/1747370319019.jpg" target="_blank">
+            <img src="images/1747370319019.jpg" alt="Image 106">
+        </a>
+        <a href="images/1747370319010.jpg" target="_blank">
+            <img src="images/1747370319010.jpg" alt="Image 105">
+        </a>
+        <a href="images/1747370319002.jpg" target="_blank">
+            <img src="images/1747370319002.jpg" alt="Image 104">
+        </a>
+        <a href="images/1747370318995.jpg" target="_blank">
+            <img src="images/1747370318995.jpg" alt="Image 103">
+        </a>
+        <a href="images/1747370318986.jpg" target="_blank">
+            <img src="images/1747370318986.jpg" alt="Image 102">
+        </a>
+        <a href="images/1747370318978.jpg" target="_blank">
+            <img src="images/1747370318978.jpg" alt="Image 101">
+        </a>
+        <a href="images/1747370318971.jpg" target="_blank">
+            <img src="images/1747370318971.jpg" alt="Image 100">
+        </a>
+        <a href="images/1747370318960.jpg" target="_blank">
+            <img src="images/1747370318960.jpg" alt="Image 99">
+        </a>
+        <a href="images/1747370318952.jpg" target="_blank">
+            <img src="images/1747370318952.jpg" alt="Image 98">
+        </a>
+        <a href="images/1747370318944.jpg" target="_blank">
+            <img src="images/1747370318944.jpg" alt="Image 97">
+        </a>
+        <a href="images/1747370318934.jpg" target="_blank">
+            <img src="images/1747370318934.jpg" alt="Image 96">
+        </a>
+        <a href="images/1747370318926.jpg" target="_blank">
+            <img src="images/1747370318926.jpg" alt="Image 95">
+        </a>
+        <a href="images/1747370318917.jpg" target="_blank">
+            <img src="images/1747370318917.jpg" alt="Image 94">
+        </a>
+        <a href="images/1747370318909.jpg" target="_blank">
+            <img src="images/1747370318909.jpg" alt="Image 93">
+        </a>
+        <a href="images/1747370318900.jpg" target="_blank">
+            <img src="images/1747370318900.jpg" alt="Image 92">
+        </a>
+        <a href="images/1747370318893.jpg" target="_blank">
+            <img src="images/1747370318893.jpg" alt="Image 91">
+        </a>
+        <a href="images/1747370318884.jpg" target="_blank">
+            <img src="images/1747370318884.jpg" alt="Image 90">
+        </a>
+        <a href="images/1747370318875.jpg" target="_blank">
+            <img src="images/1747370318875.jpg" alt="Image 89">
+        </a>
+        <a href="images/1747370318867.jpg" target="_blank">
+            <img src="images/1747370318867.jpg" alt="Image 88">
+        </a>
+        <a href="images/1747370318858.jpg" target="_blank">
+            <img src="images/1747370318858.jpg" alt="Image 87">
+        </a>
+        <a href="images/1747370318850.jpg" target="_blank">
+            <img src="images/1747370318850.jpg" alt="Image 86">
+        </a>
+        <a href="images/1747370318839.jpg" target="_blank">
+            <img src="images/1747370318839.jpg" alt="Image 85">
+        </a>
+        <a href="images/1747370318830.jpg" target="_blank">
+            <img src="images/1747370318830.jpg" alt="Image 84">
+        </a>
+        <a href="images/1747370318822.jpg" target="_blank">
+            <img src="images/1747370318822.jpg" alt="Image 83">
+        </a>
+        <a href="images/1747370318812.jpg" target="_blank">
+            <img src="images/1747370318812.jpg" alt="Image 82">
+        </a>
+        <a href="images/1747370318801.jpg" target="_blank">
+            <img src="images/1747370318801.jpg" alt="Image 81">
+        </a>
+        <a href="images/1747370318788.jpg" target="_blank">
+            <img src="images/1747370318788.jpg" alt="Image 80">
+        </a>
+        <a href="images/1747370318776.jpg" target="_blank">
+            <img src="images/1747370318776.jpg" alt="Image 79">
+        </a>
+        <a href="images/1747370318764.jpg" target="_blank">
+            <img src="images/1747370318764.jpg" alt="Image 78">
+        </a>
+        <a href="images/1747370318752.jpg" target="_blank">
+            <img src="images/1747370318752.jpg" alt="Image 77">
+        </a>
+        <a href="images/1747370318743.jpg" target="_blank">
+            <img src="images/1747370318743.jpg" alt="Image 76">
+        </a>
+        <a href="images/1747370318735.jpg" target="_blank">
+            <img src="images/1747370318735.jpg" alt="Image 75">
+        </a>
+        <a href="images/1747370318725.jpg" target="_blank">
+            <img src="images/1747370318725.jpg" alt="Image 74">
+        </a>
+        <a href="images/1747370318718.jpg" target="_blank">
+            <img src="images/1747370318718.jpg" alt="Image 73">
+        </a>
+        <a href="images/1747370318709.jpg" target="_blank">
+            <img src="images/1747370318709.jpg" alt="Image 72">
+        </a>
+        <a href="images/1747370318700.jpg" target="_blank">
+            <img src="images/1747370318700.jpg" alt="Image 71">
+        </a>
+        <a href="images/1747370318689.jpg" target="_blank">
+            <img src="images/1747370318689.jpg" alt="Image 70">
+        </a>
+        <a href="images/1747370318678.jpg" target="_blank">
+            <img src="images/1747370318678.jpg" alt="Image 69">
+        </a>
+        <a href="images/1747370318670.jpg" target="_blank">
+            <img src="images/1747370318670.jpg" alt="Image 68">
+        </a>
+        <a href="images/1747370318661.jpg" target="_blank">
+            <img src="images/1747370318661.jpg" alt="Image 67">
+        </a>
+        <a href="images/1747370318654.jpg" target="_blank">
+            <img src="images/1747370318654.jpg" alt="Image 66">
+        </a>
+        <a href="images/1747370318646.jpg" target="_blank">
+            <img src="images/1747370318646.jpg" alt="Image 65">
+        </a>
+        <a href="images/1747370318636.jpg" target="_blank">
+            <img src="images/1747370318636.jpg" alt="Image 64">
+        </a>
+        <a href="images/1747370318626.jpg" target="_blank">
+            <img src="images/1747370318626.jpg" alt="Image 63">
+        </a>
+        <a href="images/1747370318616.jpg" target="_blank">
+            <img src="images/1747370318616.jpg" alt="Image 62">
+        </a>
+        <a href="images/1747370318607.jpg" target="_blank">
+            <img src="images/1747370318607.jpg" alt="Image 61">
+        </a>
+        <a href="images/1747370318600.jpg" target="_blank">
+            <img src="images/1747370318600.jpg" alt="Image 60">
+        </a>
+        <a href="images/1747370318591.jpg" target="_blank">
+            <img src="images/1747370318591.jpg" alt="Image 59">
+        </a>
+        <a href="images/1747370318583.jpg" target="_blank">
+            <img src="images/1747370318583.jpg" alt="Image 58">
+        </a>
+        <a href="images/1747370318574.jpg" target="_blank">
+            <img src="images/1747370318574.jpg" alt="Image 57">
+        </a>
+        <a href="images/1747370318567.jpg" target="_blank">
+            <img src="images/1747370318567.jpg" alt="Image 56">
+        </a>
+        <a href="images/1747370318558.jpg" target="_blank">
+            <img src="images/1747370318558.jpg" alt="Image 55">
+        </a>
+        <a href="images/1747370318551.jpg" target="_blank">
+            <img src="images/1747370318551.jpg" alt="Image 54">
+        </a>
+        <a href="images/1747370318543.jpg" target="_blank">
+            <img src="images/1747370318543.jpg" alt="Image 53">
+        </a>
+        <a href="images/1747370318535.jpg" target="_blank">
+            <img src="images/1747370318535.jpg" alt="Image 52">
+        </a>
+        <a href="images/1747370318525.jpg" target="_blank">
+            <img src="images/1747370318525.jpg" alt="Image 51">
+        </a>
+        <a href="images/1747370318517.jpg" target="_blank">
+            <img src="images/1747370318517.jpg" alt="Image 50">
+        </a>
+        <a href="images/1747370318505.jpg" target="_blank">
+            <img src="images/1747370318505.jpg" alt="Image 49">
+        </a>
+        <a href="images/1747370318494.jpg" target="_blank">
+            <img src="images/1747370318494.jpg" alt="Image 48">
+        </a>
+        <a href="images/1747370318486.jpg" target="_blank">
+            <img src="images/1747370318486.jpg" alt="Image 47">
+        </a>
+        <a href="images/1747370318473.jpg" target="_blank">
+            <img src="images/1747370318473.jpg" alt="Image 46">
+        </a>
+        <a href="images/1747370318461.jpg" target="_blank">
+            <img src="images/1747370318461.jpg" alt="Image 45">
+        </a>
+        <a href="images/1747370318453.jpg" target="_blank">
+            <img src="images/1747370318453.jpg" alt="Image 44">
+        </a>
+        <a href="images/1747370318446.jpg" target="_blank">
+            <img src="images/1747370318446.jpg" alt="Image 43">
+        </a>
+        <a href="images/1747370318439.jpg" target="_blank">
+            <img src="images/1747370318439.jpg" alt="Image 42">
+        </a>
+        <a href="images/1747370318431.jpg" target="_blank">
+            <img src="images/1747370318431.jpg" alt="Image 41">
+        </a>
+        <a href="images/1747370318423.jpg" target="_blank">
+            <img src="images/1747370318423.jpg" alt="Image 40">
+        </a>
+        <a href="images/1747370318408.jpg" target="_blank">
+            <img src="images/1747370318408.jpg" alt="Image 39">
+        </a>
+        <a href="images/1747370318400.jpg" target="_blank">
+            <img src="images/1747370318400.jpg" alt="Image 38">
+        </a>
+        <a href="images/1747370318390.jpg" target="_blank">
+            <img src="images/1747370318390.jpg" alt="Image 37">
+        </a>
+        <a href="images/1747370318380.jpg" target="_blank">
+            <img src="images/1747370318380.jpg" alt="Image 36">
+        </a>
+        <a href="images/1747370318373.jpg" target="_blank">
+            <img src="images/1747370318373.jpg" alt="Image 35">
+        </a>
+        <a href="images/1747370318366.jpg" target="_blank">
+            <img src="images/1747370318366.jpg" alt="Image 34">
+        </a>
+        <a href="images/1747370318357.jpg" target="_blank">
+            <img src="images/1747370318357.jpg" alt="Image 33">
+        </a>
+        <a href="images/1747370318347.jpg" target="_blank">
+            <img src="images/1747370318347.jpg" alt="Image 32">
+        </a>
+        <a href="images/1747370318339.jpg" target="_blank">
+            <img src="images/1747370318339.jpg" alt="Image 31">
+        </a>
+        <a href="images/1747370318331.jpg" target="_blank">
+            <img src="images/1747370318331.jpg" alt="Image 30">
+        </a>
+        <a href="images/1747370318323.jpg" target="_blank">
+            <img src="images/1747370318323.jpg" alt="Image 29">
+        </a>
+        <a href="images/1747370318313.jpg" target="_blank">
+            <img src="images/1747370318313.jpg" alt="Image 28">
+        </a>
+        <a href="images/1747370318305.jpg" target="_blank">
+            <img src="images/1747370318305.jpg" alt="Image 27">
+        </a>
+        <a href="images/1747370318297.jpg" target="_blank">
+            <img src="images/1747370318297.jpg" alt="Image 26">
+        </a>
+        <a href="images/1747370318289.jpg" target="_blank">
+            <img src="images/1747370318289.jpg" alt="Image 25">
+        </a>
+        <a href="images/1747370318279.jpg" target="_blank">
+            <img src="images/1747370318279.jpg" alt="Image 24">
+        </a>
+        <a href="images/1747370318271.jpg" target="_blank">
+            <img src="images/1747370318271.jpg" alt="Image 23">
+        </a>
+        <a href="images/1747370318258.jpg" target="_blank">
+            <img src="images/1747370318258.jpg" alt="Image 22">
+        </a>
+        <a href="images/1747370318248.jpg" target="_blank">
+            <img src="images/1747370318248.jpg" alt="Image 21">
+        </a>
+        <a href="images/1747370318234.jpg" target="_blank">
+            <img src="images/1747370318234.jpg" alt="Image 20">
+        </a>
+        <a href="images/1747370318226.jpg" target="_blank">
+            <img src="images/1747370318226.jpg" alt="Image 19">
+        </a>
+        <a href="images/1747370318215.jpg" target="_blank">
+            <img src="images/1747370318215.jpg" alt="Image 18">
+        </a>
+        <a href="images/1747370318207.jpg" target="_blank">
+            <img src="images/1747370318207.jpg" alt="Image 17">
+        </a>
+        <a href="images/1747370318199.jpg" target="_blank">
+            <img src="images/1747370318199.jpg" alt="Image 16">
+        </a>
+        <a href="images/1747370318192.jpg" target="_blank">
+            <img src="images/1747370318192.jpg" alt="Image 15">
+        </a>
+        <a href="images/1747370318185.jpg" target="_blank">
+            <img src="images/1747370318185.jpg" alt="Image 14">
+        </a>
+        <a href="images/1747370318175.jpg" target="_blank">
+            <img src="images/1747370318175.jpg" alt="Image 13">
+        </a>
+        <a href="images/1747370318166.jpg" target="_blank">
+            <img src="images/1747370318166.jpg" alt="Image 12">
+        </a>
+        <a href="images/1747370318156.jpg" target="_blank">
+            <img src="images/1747370318156.jpg" alt="Image 11">
+        </a>
+        <a href="images/1747370318148.jpg" target="_blank">
+            <img src="images/1747370318148.jpg" alt="Image 10">
+        </a>
+        <a href="images/1747370318138.jpg" target="_blank">
+            <img src="images/1747370318138.jpg" alt="Image 9">
+        </a>
+        <a href="images/1747370318130.jpg" target="_blank">
+            <img src="images/1747370318130.jpg" alt="Image 8">
+        </a>
+        <a href="images/1747370318117.jpg" target="_blank">
+            <img src="images/1747370318117.jpg" alt="Image 7">
+        </a>
+        <a href="images/1747370318106.jpg" target="_blank">
+            <img src="images/1747370318106.jpg" alt="Image 6">
+        </a>
+        <a href="images/1747370318093.jpg" target="_blank">
+            <img src="images/1747370318093.jpg" alt="Image 5">
+        </a>
+        <a href="images/1747370318075.jpg" target="_blank">
+            <img src="images/1747370318075.jpg" alt="Image 4">
+        </a>
+        <a href="images/1747370318069.jpg" target="_blank">
+            <img src="images/1747370318069.jpg" alt="Image 3">
+        </a>
+        <a href="images/1747370318062.jpg" target="_blank">
+            <img src="images/1747370318062.jpg" alt="Image 2">
+        </a>
+        <a href="images/1747370318053.jpg" target="_blank">
+            <img src="images/1747370318053.jpg" alt="Image 1">
+        </a>
+    </div>
+</div>
+
+
+</body>
+</html>
